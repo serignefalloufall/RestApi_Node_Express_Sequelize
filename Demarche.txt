@@ -1,0 +1,34 @@
+ ==================== Demarche a suivre pour mettre en place une api rest en node js ====================
+1-Creer un dossier vide avec le nom de votre projet
+2- Se positioner vers le dossier Cree
+3-On initialise notre projet node avec la commande : npm init
+4-Installation des dependence necessaire pour la creation de notre server
+5-On install expresse avec la commande : npm install express --save
+7-On install nodemon qui permet de relancer le server apres modif : sudo npm install nodemon
+8-On cree notre server : server.js
+9-On import notre framwork express dans notre server 
+    var express = require('express');
+
+10-Installation de notre ORM Sequelize avec la commande 
+    npm install -g sequelize-cli
+    npm install --save sequelize
+
+11-Installation de mysql
+12-initialisation de sequelize : sequelize init
+13-On configure notre bd dans le fichier config
+14-On cree nos model exemple :
+
+    *  sequelize model:create
+    *  --attributes "email:string
+    *  username:string
+    *  password:string
+    *  bio:string 
+    *  isAdmin:boolean" 
+    *  --name User
+15-on cree notre bd avec le nom qu'on a mit dans le fichier config
+16-On lance la migration : sequelize db:migrate
+17-On integre la parti securite
+    npm install jsonwebtoken --save
+    npm install bcrypt --save
+    npm install body-parser --save
+18-On configure Le body parser dans server.js
