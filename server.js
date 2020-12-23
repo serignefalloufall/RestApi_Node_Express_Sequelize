@@ -1,7 +1,7 @@
 //==========IMPORTATION DES MODULE==========//
 var express = require('express');
 var bodyParser = require('body-parser');
-var apiRouter = require('./router/apiRouter').router;
+var apiRouter = require('./apiRoute/apiRoute').router;
 
 
 //==========Instantiation du server==========//

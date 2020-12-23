@@ -32,3 +32,4 @@
     npm install bcrypt --save
     npm install body-parser --save
 18-On configure Le body parser dans server.js
+19-npm install async --save
