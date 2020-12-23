@@ -28,9 +28,9 @@ module.exports = {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
 
-        if (username.length >= 4 || username.length <= 4) {
-            return res.status(400).json({ 'error': 'wrong username (must be length 5 - 12)' });
-        }
+        // if (username.length >= 13 || username.length >= 4) {
+        //     return res.status(400).json({ 'error': 'wrong username (must be length 5 - 12)' });
+        // }
 
         if (!EMAIL_REGEX.test(email)) {
             return res.status(400).json({ 'error': 'email is not valid' });
@@ -87,10 +87,6 @@ module.exports = {
             }
         });
     },
-
-
-
-
 
     //Cette fonction permet de gerer la connexion
     login: function(req, res) {
