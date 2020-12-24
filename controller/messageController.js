@@ -25,11 +25,18 @@ module.exports = {
 
         // On recuper l'entet d'autorisation de notre req
         var headerAuth = req.headers['authorization'];
-        var userId = jwtSecurite.getUserId(headerAuth);
+        var user_id = jwtSecurite.getUserId(headerAuth);
+
+        if (user_id < 0) //pour dir que le token est invalide
+        {
+            return res.status(400).json({ 'error': 'wrong token' });
+
+        }
 
         // Recuperation des params
         var title = req.body.title;
         var content = req.body.content;
+
 
         if (title == null || content == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
@@ -44,12 +51,13 @@ module.exports = {
             function(done) {
 
                 User.findOne({
-                        where: { id: userId }
+
+                        where: { id: user_id }
                     })
                     .then(function(userFound) {
                         done(null, userFound);
                     })
-                    .catch(function(error) {
+                    .catch(function(err) {
                         return res.status(500).json({ 'error': 'unable to verify user' });
                     });
             },
@@ -84,7 +92,18 @@ module.exports = {
 
     }, //fin create
 
+    //cette function permet de lister les message
     listeMessage: function(req, res) { //debut func liste message
+
+        // On recuper l'entet d'autorisation de notre req
+        var headerAuth = req.headers['authorization'];
+        var userId = jwtSecurite.getUserId(headerAuth);
+
+        if (userId < 0) //pour dir que le token est invalide
+        {
+            return res.status(400).json({ 'error': 'wrong token' });
+
+        }
 
         var fields = req.query.fields; //selectioner les clonne qu'on v afficher
         var limit = parseInt(req.query.limit); //recup les message par segment
